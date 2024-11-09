@@ -1,4 +1,4 @@
-// CompanyDashboard.tsx
+// src/components/CompanyDashboard.tsx
 import { useState } from "react";
 import { useRouter } from "next/router";
 
@@ -9,19 +9,17 @@ const CompanyDashboard: React.FC = () => {
 
   const goToJobPostingPage = () => {
     router.push({
-      pathname: "/job-posting",
+      pathname: "/JobPostingPage",
       query: { name: companyName, description: companyDescription },
     });
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6 space-y-8">
-      <h1 className="text-3xl font-semibold text-blue-800">
-        Company Dashboard
-      </h1>
-      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg space-y-6">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-16 space-y-8">
+      <h1 className="text-3xl font-bold text-black-800">Company Dashboard</h1>
+      <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-lg space-y-6">
         <div>
-          <label className="block text-lg font-medium text-gray-700">
+          <label className="block text-lg font-medium p-1 text-gray-700">
             Company Name
           </label>
           <input
@@ -33,7 +31,7 @@ const CompanyDashboard: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-lg font-medium text-gray-700">
+          <label className="block text-lg font-medium p-1 text-gray-700">
             Company Description
           </label>
           <textarea
