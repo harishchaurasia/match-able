@@ -1,13 +1,14 @@
 // pages/index.tsx
 import React from "react";
-import LandingPage from "./landing_page";
 import CompanyDashboard from "./CompanyDashboard";
+import LandingPage from "./LandingPage";
 
 const HomePage: React.FC = () => {
   return (
     <>
       {/* <LandingPage /> */}
-      <CompanyDashboard />
+      {/* <CompanyDashboard /> */}
+      <LandingPage />
     </>
   );
 };

@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
           {/* <Link href="/what-we-do">What We Do</Link> */}
           <Link href="/who-we-are">Who We Are</Link>
           <Link href="/contact-us">Contact Us</Link>
-          <Link href="/about-us">About Us</Link>
+          <Link href="/AboutUs">About Us</Link>
         </div>
       </div>
     </nav>
