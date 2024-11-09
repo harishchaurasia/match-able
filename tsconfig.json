@@ -8,6 +8,16 @@
 //       }
 //     }
 //   }
+// { 
+//     "compilerOptions": {
+//       "esModuleInterop": true,
+//       "jsx": "react-jsx",
+//       "baseUrl": "./",
+//       "paths": {
+//         "@components/*": ["src/frontend/components/*"]
+//       }
+//     }
+//   }
 {
   "compilerOptions": {
     "target": "es5",
@@ -30,7 +40,7 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": [
-        "src/frontend/components/*"
+        "src/pages/frontend/components/*"
       ]
     },
     "incremental": true
