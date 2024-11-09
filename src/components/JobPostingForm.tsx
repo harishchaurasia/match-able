@@ -1,13 +1,24 @@
-// JobPostingForm.tsx
-import React, { useState } from "react";
+// src/components/JobPostingForm.tsx
+import React, { useState, useEffect } from "react";
 
 interface JobPostingFormProps {
   onSubmit: (job: { title: string; description: string }) => void;
+  initialCompanyName?: string;
+  initialCompanyDescription?: string;
 }
 
-const JobPostingForm: React.FC<JobPostingFormProps> = ({ onSubmit }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const JobPostingForm: React.FC<JobPostingFormProps> = ({
+  onSubmit,
+  initialCompanyName = "",
+  initialCompanyDescription = "",
+}) => {
+  const [title, setTitle] = useState(initialCompanyName);
+  const [description, setDescription] = useState(initialCompanyDescription);
+
+  useEffect(() => {
+    setTitle(initialCompanyName);
+    setDescription(initialCompanyDescription);
+  }, [initialCompanyName, initialCompanyDescription]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
