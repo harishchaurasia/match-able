@@ -18,7 +18,7 @@ def resumeSimilarity(resume, jobDesc):
         "content": [
           {
             "type": "text",
-            "text": f"Given below is a person's resume enclosed by 3 backticks\n\n```{resume}```\n\nGiven below is a job description enclosed by 3 backticks\n\n```{jobDesc}```\n\nReturn an estimated percentage overlap between the job's demands and the jobseekers' skills and capabilities. return the output as json with key percentageOverlap"
+            "text": f"Given below is a person's resume enclosed by 3 backticks\n\n```{resume}```\n\nGiven below is a job description enclosed by 3 backticks\n\n```{jobDesc}```\n\nReturn a decimal between 1 to 5 to see how relevant the jobSeeker's industry, experiences and skills are to the job role. Return this value as a json with key \"relevance\""
           }
         ]
       }
@@ -42,7 +42,7 @@ def resumeSimilarity(resume, jobDesc):
   # Parse the JSON string
   try:
     generation_json = json.loads(generation)
-    percentage_overlap = generation_json.get("percentageOverlap")
+    percentage_overlap = generation_json.get("relevance")
     print("percentageOverlap", percentage_overlap)
 
     # # Calculate intersection and union
@@ -53,7 +53,7 @@ def resumeSimilarity(resume, jobDesc):
     # percentage_overlap = (len(intersection) / len(union)) * 100
 
     # print("percentage overlap", percentage_overlap)
-    return percentage_overlap
+    return percentage_overlap * 20
 
   except json.JSONDecodeError:
     print("Error: Could not decode JSON")
@@ -103,4 +103,4 @@ Your daily responsibilities include coding, debugging, and deploying software so
 
 This position requires strong programming skills in languages such as Python, Java, or C++, and an understanding of data structures and algorithms. Google offers a culture of innovation and mentorship, encouraging you to bring fresh ideas and develop as an engineer while shaping the future of technology."""
 
-  resumeSimilarity(resume, jobDesc)
+  print(resumeSimilarity(resume, jobDesc))
