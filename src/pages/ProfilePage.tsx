@@ -35,28 +35,7 @@ const ProfilePage: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-lg space-y-4 max-w-lg mx-auto">
           <div>
             <label className="block text-lg font-medium text-gray-700">
-              Upload Resume
-            </label>
-            <input type="file" onChange={handleFileUpload} className="mt-2" />
-          </div>
-
-          <div>
-            <label className="block text-lg font-medium text-gray-700">
-              Age
-            </label>
-            <input
-              type="number"
-              value={demographics.age}
-              onChange={(e) =>
-                setDemographics({ ...demographics, age: e.target.value })
-              }
-              className="w-full p-2 border border-gray-300 rounded-lg"
-            />
-          </div>
-
-          <div>
-            <label className="block text-lg font-medium text-gray-700">
-              Gender
+              Name
             </label>
             <input
               type="text"
@@ -68,7 +47,35 @@ const ProfilePage: React.FC = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
+            <label className="block text-lg font-medium text-gray-700">
+              Age
+            </label>
+            <input
+              type="number"
+              value={demographics.age}
+              onChange={(e) =>
+                setDemographics({ ...demographics, age: e.target.value })
+              }
+              className="w-full p-2 border border-gray-300 rounded-lg"
+            />
+          </div> */}
+
+          {/* <div>
+            <label className="block text-lg font-medium text-gray-700">
+              Gender
+            </label>
+            <input
+              type="text"
+              value={demographics.gender}
+              onChange={(e) =>
+                setDemographics({ ...demographics, gender: e.target.value })
+              }
+              className="w-full p-2 border border-gray-300 rounded-lg"
+            />
+          </div> */}
+
+          {/* <div>
             <label className="block text-lg font-medium text-gray-700">
               Location
             </label>
@@ -80,7 +87,7 @@ const ProfilePage: React.FC = () => {
               }
               className="w-full p-2 border border-gray-300 rounded-lg"
             />
-          </div>
+          </div> */}
 
           <div>
             <label className="block text-lg font-medium text-gray-700">
@@ -94,9 +101,16 @@ const ProfilePage: React.FC = () => {
             />
           </div>
 
+          <div>
+            <label className="block text-lg font-medium text-gray-700">
+              Upload Resume
+            </label>
+            <input type="file" onChange={handleFileUpload} className="mt-2" />
+          </div>
+
           <button
             onClick={handleSubmit}
-            className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+            className="w-full bg-green-600 text-white py-3 mt-6 rounded-lg font-semibold hover:bg-green-700 transition-colors"
           >
             Save and Submit
           </button>
