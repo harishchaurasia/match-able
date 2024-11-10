@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/LandingPage": "pages/LandingPage.js",
+  "/ProfilePage": "pages/ProfilePage.js",
   "/": "pages/index.js",
-  "/AboutUs": "pages/AboutUs.js"
+  "/JobListingPage": "pages/JobListingPage.js"
 }
