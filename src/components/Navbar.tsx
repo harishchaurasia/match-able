@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Product Name */}
         <h1 className="text-2xl font-bold">
-          <Link href="/">MatchAble</Link>
+          <Link href="/">MatchABLE</Link>
         </h1>
 
         {/* Navigation Links */}
