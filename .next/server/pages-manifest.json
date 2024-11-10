@@ -2,7 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/JobListingPage": "pages/JobListingPage.js",
+  "/": "pages/index.js",
   "/LoginPage": "pages/LoginPage.js",
-  "/": "pages/index.js"
+  "/JobListingPage": "pages/JobListingPage.js",
+  "/ProfilePage": "pages/ProfilePage.js"
 }
