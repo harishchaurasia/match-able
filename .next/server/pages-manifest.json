@@ -4,5 +4,5 @@
   "/_document": "pages/_document.js",
   "/ProfilePage": "pages/ProfilePage.js",
   "/": "pages/index.js",
-  "/JobListingPage": "pages/JobListingPage.js"
+  "/LoginPage": "pages/LoginPage.js"
 }

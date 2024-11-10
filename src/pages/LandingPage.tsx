@@ -70,7 +70,7 @@ const LandingPage: React.FC = () => {
         {/* Centered Buttons */}
         <div className="flex justify-center space-x-4 mt-6">
           <button
-            onClick={() => router.push("/ProfilePage")}
+            onClick={() => router.push("/LoginPage")}
             className="bg-black text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-500 transition duration-200 ease-in-out shadow-lg"
           >
             Login
