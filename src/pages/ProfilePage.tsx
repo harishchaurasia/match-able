@@ -3,29 +3,61 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Navbar from "src/components/Navbar";
 
+const deiOptions = [
+  "Wheelchair Accessibility (Accessible building entrances, restrooms, workspaces)",
+  "Accessible Parking (Reserved parking spaces near the building)",
+  "Remote Work Options (Flexible work-from-home opportunities)",
+  "Adjustable Workstations (Standing desks, accessible desks, ergonomic chairs)",
+  "Assistive Technology (Screen readers, speech-to-text, Braille displays)",
+  "American Sign Language (ASL) Support (Availability of interpreters for meetings)",
+  "Flexible Work Hours (Ability to modify hours as needed for medical appointments)",
+  "Quiet/Low-Stimulation Workspace (Separate or soundproof spaces for focus)",
+  "Accessible Public Transportation (Close proximity to accessible transit options)",
+  "Sensory-Friendly Environment (Reduced fluorescent lighting, noise-canceling headphones)",
+  "Service Animal Accommodation (Permitted presence of support animals)",
+  "Accessible Restroom Facilities (Gender-neutral and accessible restrooms)",
+  "Closed Captioning/Subtitles for Video Content (Available for meetings and training)",
+  "Accessible Documentation (Accessible PDFs, high-contrast documents, plain language)",
+  "Mental Health Days (Policy allowing additional days off for mental health)",
+  "On-Site Health Support (Therapists, counselors, or on-call medical professionals)",
+  "Transportation Assistance (Shuttle services, ridesharing options)",
+  "Customized Break Schedules (Flexibility to take breaks as needed)",
+  "Height-Adjustable or Ergonomic Tools (Keyboards, monitors, or other devices)",
+  "Emergency Evacuation Support (Personalized plans for safe emergency exits)",
+];
+
 const ProfilePage: React.FC = () => {
   const [resume, setResume] = useState<File | null>(null);
   const [demographics, setDemographics] = useState({
-    age: "",
+    name: "",
     gender: "",
     location: "",
   });
-  const [deiNeeds, setDeiNeeds] = useState("");
+  const [selectedDeiNeeds, setSelectedDeiNeeds] = useState<string[]>([]);
   const router = useRouter();
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setResume(e.target.files[0]);
   };
 
+  const handleCheckboxChange = (option: string) => {
+    setSelectedDeiNeeds((prev) =>
+      prev.includes(option)
+        ? prev.filter((item) => item !== option)
+        : [...prev, option]
+    );
+  };
+
   const handleSubmit = () => {
     // Handle form submission logic here
+    console.log("Selected DEI Needs:", selectedDeiNeeds);
     router.push("/job-listing");
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-8 py-6">
       <div className="w-full max-w-2xl">
-        <div className="mb-16 ">
+        <div className="mb-16">
           <Navbar />
         </div>
         <h1 className="text-3xl font-semibold text-blue-800 mb-6 text-center">
@@ -39,29 +71,15 @@ const ProfilePage: React.FC = () => {
             </label>
             <input
               type="text"
-              value={demographics.gender}
+              value={demographics.name}
               onChange={(e) =>
-                setDemographics({ ...demographics, gender: e.target.value })
+                setDemographics({ ...demographics, name: e.target.value })
               }
               className="w-full p-2 border border-gray-300 rounded-lg"
             />
           </div>
 
-          {/* <div>
-            <label className="block text-lg font-medium text-gray-700">
-              Age
-            </label>
-            <input
-              type="number"
-              value={demographics.age}
-              onChange={(e) =>
-                setDemographics({ ...demographics, age: e.target.value })
-              }
-              className="w-full p-2 border border-gray-300 rounded-lg"
-            />
-          </div> */}
-
-          {/* <div>
+          <div>
             <label className="block text-lg font-medium text-gray-700">
               Gender
             </label>
@@ -73,7 +91,7 @@ const ProfilePage: React.FC = () => {
               }
               className="w-full p-2 border border-gray-300 rounded-lg"
             />
-          </div> */}
+          </div>
 
           {/* <div>
             <label className="block text-lg font-medium text-gray-700">
@@ -89,16 +107,24 @@ const ProfilePage: React.FC = () => {
             />
           </div> */}
 
+          {/* DEI Needs Checkboxes */}
           <div>
-            <label className="block text-lg font-medium text-gray-700">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
               DEI Needs
             </label>
-            <textarea
-              value={deiNeeds}
-              onChange={(e) => setDeiNeeds(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg"
-              rows={3}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-96 overflow-y-auto">
+              {deiOptions.map((option, index) => (
+                <label key={index} className="flex items-start space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedDeiNeeds.includes(option)}
+                    onChange={() => handleCheckboxChange(option)}
+                    className="mt-1"
+                  />
+                  <span className="text-gray-700">{option}</span>
+                </label>
+              ))}
+            </div>
           </div>
 
           <div>
@@ -119,4 +145,5 @@ const ProfilePage: React.FC = () => {
     </div>
   );
 };
+
 export default ProfilePage;
