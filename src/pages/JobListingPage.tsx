@@ -1,6 +1,7 @@
 // src/pages/JobListingPage.tsx
 import React from "react";
 import CircularProgress from "../components/CircularProgress";
+import Navbar from "src/components/Navbar";
 
 interface Job {
   title: string;
@@ -15,7 +16,7 @@ const jobs: Job[] = [
     title: "Frontend Developer",
     company: "Company A",
     location: "Remote",
-    matchPercentage: 75,
+    matchPercentage: 23,
     skillsPercentage: 80,
   },
   // Add more jobs as needed
@@ -24,6 +25,9 @@ const jobs: Job[] = [
 const JobListingPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100 px-8 py-6">
+      <div className="mb-16 ">
+        <Navbar />
+      </div>
       <h1 className="text-3xl font-semibold text-blue-800 mb-6">
         Job Listings
       </h1>
@@ -48,11 +52,13 @@ const JobListingPage: React.FC = () => {
             <div className="flex space-x-8 items-center">
               <div className="flex flex-col items-center">
                 <CircularProgress percentage={job.matchPercentage} />
-                <p className="text-sm text-gray-600 mt-2">Match</p>
+                <p className="text-sm text-gray-600 mt-2">
+                  Accessibility Match
+                </p>
               </div>
               <div className="flex flex-col items-center">
                 <CircularProgress percentage={job.skillsPercentage} />
-                <p className="text-sm text-gray-600 mt-2">Skills</p>
+                <p className="text-sm text-gray-600 mt-2">Tech Skills</p>
               </div>
             </div>
           </div>
