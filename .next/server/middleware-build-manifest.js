@@ -15,10 +15,10 @@ self.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
-    "/AboutUs": [
+    "/JobListingPage": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/AboutUs.js"
+      "static/chunks/pages/JobListingPage.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",
