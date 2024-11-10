@@ -1,9 +1,14 @@
 // src/pages/about-us.tsx
 import React from "react";
+import Navbar from "src/components/Navbar";
 
 const AboutUs: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 px-6 py-12 flex flex-col items-center">
+      <div className="mb-6">
+        <Navbar />
+      </div>
+
       <h1 className="text-4xl font-bold text-blue-800 mb-10">About Us</h1>
 
       <div className="bg-white shadow-xl rounded-lg p-8 max-w-4xl space-y-6 text-center">

@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
         <div className="flex space-x-6">
           <Link href="/who-we-are">Who We Are</Link>
           <Link href="/contact-us">Contact Us</Link>
-          <Link href="/about-us">About Us</Link>
+          <Link href="/AboutUs">About Us</Link>
         </div>
       </div>
     </nav>

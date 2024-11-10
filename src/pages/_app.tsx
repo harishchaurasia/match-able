@@ -6,10 +6,10 @@ import type { AppProps } from "next/app";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Navbar />
-      <div className="p-2">
-        <Component {...pageProps} />
-      </div>
+      {/* <Navbar /> */}
+      {/* <div className="p-2"> */}
+      {/* </div> */}
+      <Component {...pageProps} />
     </>
   );
 }
