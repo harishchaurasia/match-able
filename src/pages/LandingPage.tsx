@@ -63,7 +63,7 @@ const LandingPage: React.FC = () => {
 
         {/* Subheading */}
         <p className="text-2xl text-black font-light">
-          Match-ABLE connects skilled individuals with disabilities to companies
+          MatchAble connects skilled individuals with disabilities to companies
           committed to diversity, equity, and inclusion.
         </p>
 

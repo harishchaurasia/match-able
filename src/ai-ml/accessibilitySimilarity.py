@@ -122,114 +122,114 @@ class AccessibilityMatcher:
         return report
 
 
-# def main():
-#     print("started main")
-#     # Initialize the matcher
-#     matcher = AccessibilityMatcher()
-#
-#     # Test cases dictionary containing different scenarios
-#     test_cases = {
-#         "case1": {
-#             "description": "High Match - Physical Accessibility",
-#             "seeker_needs": """
-#             I require a wheelchair-accessible workspace with an adjustable height desk.
-#             Need accessible parking close to building entrance.
-#             Require accessible bathrooms on the same floor.
-#             """,
-#             "company_accommodations": """
-#             Our office is fully wheelchair accessible with adjustable standing desks.
-#             We have designated accessible parking spots near all entrances.
-#             Each floor has multiple ADA-compliant bathrooms.
-#             Wide doorways and corridors throughout the building.
-#             """
-#         },
-#
-#         "case2": {
-#             "description": "Mixed Match - Technology and Sensory Needs",
-#             "seeker_needs": """
-#             I use JAWS screen reader software and need compatible systems.
-#             Require low-light environment due to light sensitivity.
-#             Need noise-canceling headphones for focus.
-#             """,
-#             "company_accommodations": """
-#             All computer systems are compatible with major screen readers.
-#             We provide adjustable lighting in all workspaces.
-#             Open office layout with some quiet spaces available.
-#             """
-#         },
-#
-#         "case3": {
-#             "description": "Mental Health Accommodations",
-#             "seeker_needs": """
-#             Need flexible work hours due to anxiety management.
-#             Require regular breaks throughout the day.
-#             Private space for medication and stress management.
-#             Remote work options during high-anxiety periods.
-#             """,
-#             "company_accommodations": """
-#             We offer flexible scheduling for all employees.
-#             Dedicated wellness rooms on each floor.
-#             Hybrid work policy with work-from-home options.
-#             Mental health days included in benefits package.
-#             """
-#         },
-#
-#         "case4": {
-#             "description": "Low Match - Specialized Needs",
-#             "seeker_needs": """
-#             Require specialized ergonomic keyboard and vertical mouse.
-#             Need support animal accommodation.
-#             American Sign Language interpreter for meetings.
-#             """,
-#             "company_accommodations": """
-#             Standard office equipment provided.
-#             Virtual meeting capabilities with chat function.
-#             Basic ergonomic assessments available.
-#             """
-#         }
-#     }
-#
-#     # Process each test case and display results
-#     for case_id, case_data in test_cases.items():
-#         print(f"\n{'=' * 80}")
-#         print(f"Testing {case_id}: {case_data['description']}")
-#         print(f"{'=' * 80}")
-#
-#         print("\nJob Seeker Needs:")
-#         print(case_data['seeker_needs'].strip())
-#
-#         print("\nCompany Accommodations:")
-#         print(case_data['company_accommodations'].strip())
-#
-#         # Generate and display the matching report
-#         print("\nScore:")
-#         score = get_accessibility_match(case_data['seeker_needs'].strip(),
-#             case_data['company_accommodations'].strip())
-#         print(score)
-#
-#         # report = matcher.generate_matching_report(
-#         #     case_data['seeker_needs'],
-#         #     case_data['company_accommodations']
-#         # )
-#         #
-#         # print("\nMatching Report:")
-#         # print(f"Overall Match Score: {report['overall_match_score']:.2f}%")
-#         #
-#         # print("\nMatched Needs:")
-#         # for need in report['matched_needs']:
-#         #     match_info = report['needs_analysis'][need]
-#         #     print(f"- {need}")
-#         #     print(f"  Best Match: {match_info['best_match']}")
-#         #     print(f"  Similarity: {match_info['similarity_score']:.2f}")
-#         #
-#         # print("\nUnmatched Needs:")
-#         # for need in report['unmatched_needs']:
-#         #     print(f"- {need}")
-#         #
-#         # print("\nDetailed Similarity Scores:")
-#         # for score_type, score in report['similarity_scores'].items():
-#         #     print(f"- {score_type}: {score:.2f}")
-#
-#
-# if __name__ == "__main__":
-#     main()
+def main():
+    print("started main")
+    # Initialize the matcher
+    matcher = AccessibilityMatcher()
+
+    # Test cases dictionary containing different scenarios
+    test_cases = {
+        "case1": {
+            "description": "High Match - Physical Accessibility",
+            "seeker_needs": """
+            I require a wheelchair-accessible workspace with an adjustable height desk.
+            Need accessible parking close to building entrance.
+            Require accessible bathrooms on the same floor.
+            """,
+            "company_accommodations": """
+            Our office is fully wheelchair accessible with adjustable standing desks.
+            We have designated accessible parking spots near all entrances.
+            Each floor has multiple ADA-compliant bathrooms.
+            Wide doorways and corridors throughout the building.
+            """
+        },
+
+        "case2": {
+            "description": "Mixed Match - Technology and Sensory Needs",
+            "seeker_needs": """
+            I use JAWS screen reader software and need compatible systems.
+            Require low-light environment due to light sensitivity.
+            Need noise-canceling headphones for focus.
+            """,
+            "company_accommodations": """
+            All computer systems are compatible with major screen readers.
+            We provide adjustable lighting in all workspaces.
+            Open office layout with some quiet spaces available.
+            """
+        },
+
+        "case3": {
+            "description": "Mental Health Accommodations",
+            "seeker_needs": """
+            Need flexible work hours due to anxiety management.
+            Require regular breaks throughout the day.
+            Private space for medication and stress management.
+            Remote work options during high-anxiety periods.
+            """,
+            "company_accommodations": """
+            We offer flexible scheduling for all employees.
+            Dedicated wellness rooms on each floor.
+            Hybrid work policy with work-from-home options.
+            Mental health days included in benefits package.
+            """
+        },
+
+        "case4": {
+            "description": "Low Match - Specialized Needs",
+            "seeker_needs": """
+            Require specialized ergonomic keyboard and vertical mouse.
+            Need support animal accommodation.
+            American Sign Language interpreter for meetings.
+            """,
+            "company_accommodations": """
+            Standard office equipment provided.
+            Virtual meeting capabilities with chat function.
+            Basic ergonomic assessments available.
+            """
+        }
+    }
+
+    # Process each test case and display results
+    for case_id, case_data in test_cases.items():
+        print(f"\n{'=' * 80}")
+        print(f"Testing {case_id}: {case_data['description']}")
+        print(f"{'=' * 80}")
+
+        print("\nJob Seeker Needs:")
+        print(case_data['seeker_needs'].strip())
+
+        print("\nCompany Accommodations:")
+        print(case_data['company_accommodations'].strip())
+
+        # Generate and display the matching report
+        print("\nScore:")
+        score = get_accessibility_match(case_data['seeker_needs'].strip(),
+            case_data['company_accommodations'].strip())
+        print(score)
+
+        # report = matcher.generate_matching_report(
+        #     case_data['seeker_needs'],
+        #     case_data['company_accommodations']
+        # )
+        #
+        # print("\nMatching Report:")
+        # print(f"Overall Match Score: {report['overall_match_score']:.2f}%")
+        #
+        # print("\nMatched Needs:")
+        # for need in report['matched_needs']:
+        #     match_info = report['needs_analysis'][need]
+        #     print(f"- {need}")
+        #     print(f"  Best Match: {match_info['best_match']}")
+        #     print(f"  Similarity: {match_info['similarity_score']:.2f}")
+        #
+        # print("\nUnmatched Needs:")
+        # for need in report['unmatched_needs']:
+        #     print(f"- {need}")
+        #
+        # print("\nDetailed Similarity Scores:")
+        # for score_type, score in report['similarity_scores'].items():
+        #     print(f"- {score_type}: {score:.2f}")
+
+
+if __name__ == "__main__":
+    main()

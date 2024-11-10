@@ -83,11 +83,17 @@ interface Job {
   location: string;
   matchPercentage: number;
   skillsPercentage: number;
+  accessibilityServices: string;
 }
 
 const JobListingPage: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
+
+    // Helper function to generate random percentage within a range
+  const getRandomPercentage = (min: number, max: number): number => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -97,8 +103,11 @@ const JobListingPage: React.FC = () => {
           title: company.jobTitle,
           company: company.name,
           location: "Location info here", // Replace with actual location if available
-          matchPercentage: 23, // Static for now
-          skillsPercentage: 80, // Static for now
+          // matchPercentage: 23, // Static for now
+          // skillsPercentage: 80, // Static for now,
+          matchPercentage: getRandomPercentage(45, 75), // Random between 45-75%
+          skillsPercentage: getRandomPercentage(60, 95), // Random between 60-95%
+          accessibilityServices: company.accessibilityServices || "" // accessibilityServices
         }));
         setJobs(jobData);
       } catch (error) {
@@ -141,6 +150,11 @@ const JobListingPage: React.FC = () => {
               </h2>
               <p className="text-gray-600">
                 {job.company} - {job.location}
+                <div className="mt-2">
+                  <p>
+                    {job.accessibilityServices}
+                  </p>
+                </div>
               </p>
             </div>
 
