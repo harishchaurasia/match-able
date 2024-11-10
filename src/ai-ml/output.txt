@@ -1,0 +1,57 @@
+
+==================================================
+Page 1
+==================================================
+
+MUSKAN MAHAJAN
+Atlanta, GA | (470) 836-7544| muskanmahajan2004@gmail.com | linkedin.com/in/muskanmahajan/
+EDUCATION
+Georgia Institute of Technology Expected May 2026
+BS in Computer Science - Specialization in Artificial Intelligence and Human-Computer Interaction (GPA: 3.6)
+Relevant Coursework: OOP, Data Structures & Algorithms, Objects & Design, Human-AI Interaction, Study Abroad at Barcelona
+PROJECTS
+Buzz Bazaar: Campus-based reselling marketplace (HackGT Project) | Atlanta, Georgia Oct 2023 - Apr 2024
+Founder and Developer
+▪ Developed responsive, full stack web-application to connect 45+ students at Georgia Tech campus with verified product resellers
+▪ Engineered 12 key components – including Search, Buy and Sell - for the frontend using HTML, CSS, React and JavaScript
+▪ Implemented secure email authentication using Supabase API, and managed information for 60+ products using PostgreSQL
+Affirm: Positive affirmations generator | New Delhi, India Apr 2023 - May 2023
+Founder and Developer of Large Language Model (LLM) based web-application
+▪ Built GPT 3.5-based Python web-app for generating empowering messages that amassed 400+ users and 40+ Product Hunt upvotes
+▪ Stored 720+ user grievances & affirmations using Postgres – iteratively fine-tuning the GPT-3.5 model based on user query patterns
+▪ Developed backend and secured database connection using Flask and deployed the application using Heroku for reliable scaling
+BELA: Bot for English Language Acquisition | New Delhi, India Jan 2022 - Nov 2022
+Natural Language Processing (NLP) Research Project under PhD candidate at Sorbonne
+▪ Developed language-learning chatbot for 35+ underserved learners in India - achieving 133% improvement in English test scores
+▪ Built text classification, translation & Q&A components for dialogue pipeline with Python’s NLTK, Transformers & gTTS libraries
+▪ Published and presented research at EMNLP 2022 and NeurIPS 2022 conferences
+WORK EXPERIENCE
+Accenture | Remote May 2024 – May 2024
+Software Engineering Extern (1 week program)
+▪ Engaged in 13+ hours of 1:1 interview prep and training centered around Generative AI and Data Analytics from current analysts
+Millennium Management LLC | New York, New York Apr 2024 - Apr 2024
+Analyst, Millennium FinTech Challenge
+▪ Engineered and back tested trading strategy using Python’s yfinance & NumPy libraries that outperformed the S&P 500 by 142%
+▪ Optimized an investment portfolio using live market data and the Capital Asset Pricing Model (CAPM) that outperformed the Sharpe
+Ratio benchmark by 389% after programmatically testing 1,300+ combinations of commodities, indices, and stocks
+Wolfram | Remote Jun 2022 - Jul 2022
+Computational Linguistics Research Intern (Recognized as “Featured Contributor”)
+▪ Built native-language identifier tool to help English-instructors worldwide adapt their curricula based on students' native languages
+▪ Analyzed 5600 multilingual essays using Wolfram language’s machine learning libraries to extract 5 nuanced linguistic patterns
+▪ Achieved 5.6% accuracy improvement over baseline after testing logistic regression, decision tree & random forest-based models
+LEADERSHIP
+Vice President, External Relations at Women @ College of Computing | Atlanta, Georgia May 2024 – Present
+▪ Liaised with 7+ corporate sponsors to organize 5 recruitment events, fostering networking opportunities for 160+ women
+▪ Curated and compiled a resume book featuring 75+ members for potential job placements at Google, Millennium LLC, etc.
+Event Director, Women’s History Month Event "EmpowHer" at Startup Exchange | Atlanta, Georgia Jan 2024 – Mar 2024
+▪ Spearheaded panel discussion featuring Director at VISA, Forbes 30U30 Founder to propel female-builder culture in the Southeast
+▪ Led cross-functional team of 13 - including outreach, designs, marketing & logistics - resulting in 170 sign-ups across GT’s campus
+▪ Pitched event and raised $2,000 in corporate funding for a post-panel networking dinner for 110+ female attendees
+Operations Assistant, Georgia Tech Athletics | Atlanta, Georgia Sep 2023 - Present
+▪ Delivered customer service to 60k+ attendees spanning 11+ sports events - contributing to $4.7 million revenue generation
+SKILLS
+Languages: Python, Java, C#, C++, MATLAB, R, HTML, CSS, JavaScript, SQL, Kotlin, Swift, PHP, Ruby, Go, TypeScript, Scala
+Frameworks/Libraries: React, Node.js, Angular, pandas, TensorFlow, Transformers, scikit-learn, PyTorch, Django, MySQL, NoSQL
+Developer Tools: Git, Heroku, VSCode, PyCharm, IntelliJ, Google Cloud Platform, Microsoft Azure, Agile. Figma, GCP
+AWARDS
+Competitive Powerlifter: 3x National deadlift gold-medalist (125 lb. category) with cumulative 463 lb. Dec 2022
