@@ -2,6 +2,11 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+<<<<<<< HEAD
+=======
+  "/JobListingPage": "pages/JobListingPage.js",
+  "/ProfilePage": "pages/ProfilePage.js",
+>>>>>>> d35961344be1f67f6f979e3e6a8fca5c168c608c
   "/LoginPage": "pages/LoginPage.js",
   "/": "pages/index.js"
 }

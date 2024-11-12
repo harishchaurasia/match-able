@@ -7,12 +7,12 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Product Name */}
         <h1 className="text-2xl font-bold">
-          <Link href="/">MatchABLE</Link>
+          <Link href="/">MatchAble</Link>
         </h1>
 
         {/* Navigation Links */}
         <div className="flex space-x-6">
-          <Link href="/">Who We Are</Link>
+          {/*<Link href="/">Who We Are</Link>*/}
           <Link href="/">Contact Us</Link>
           <Link href="/AboutUs">About Us</Link>
         </div>

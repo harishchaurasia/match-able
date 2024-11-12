@@ -86,9 +86,13 @@ interface Job {
   location: string;
   matchPercentage: number;
   skillsPercentage: number;
+<<<<<<< HEAD
   companyId: string;
   description?: string;
   accessibilityServices?: string;
+=======
+  accessibilityServices: string;
+>>>>>>> d35961344be1f67f6f979e3e6a8fca5c168c608c
 }
 
 const JobListingPage: React.FC = () => {
@@ -96,6 +100,11 @@ const JobListingPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+
+    // Helper function to generate random percentage within a range
+  const getRandomPercentage = (min: number, max: number): number => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
 
   useEffect(() => {
     const fetchJobsAndScores = async () => {
@@ -115,12 +124,21 @@ const JobListingPage: React.FC = () => {
         const jobData = companiesResponse.data.map((company: any) => ({
           title: company.jobTitle || "Position Available",
           company: company.name,
+<<<<<<< HEAD
           location: company.location || "Remote",
           matchPercentage: Math.round(scoresResponse.data[company._id] || 0),
           skillsPercentage: 80,
           companyId: company._id,
           description: company.description,
           accessibilityServices: company.accessibilityServices,
+=======
+          location: "Location info here", // Replace with actual location if available
+          // matchPercentage: 23, // Static for now
+          // skillsPercentage: 80, // Static for now,
+          matchPercentage: getRandomPercentage(45, 75), // Random between 45-75%
+          skillsPercentage: getRandomPercentage(60, 95), // Random between 60-95%
+          accessibilityServices: company.accessibilityServices || "" // accessibilityServices
+>>>>>>> d35961344be1f67f6f979e3e6a8fca5c168c608c
         }));
 
         const sortedJobs = jobData.sort(
@@ -161,9 +179,32 @@ const JobListingPage: React.FC = () => {
     );
   }
 
+<<<<<<< HEAD
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
+=======
+      <div className="space-y-6">
+        {jobs.map((job, index) => (
+          <div
+            key={index}
+            className="bg-white p-6 rounded-lg shadow-lg flex justify-between items-center"
+          >
+            {/* Left Section with Job Details */}
+            <div className="flex-1">
+              <h2 className="text-xl font-bold text-gray-800 mb-1">
+                {job.title}
+              </h2>
+              <p className="text-gray-600">
+                {job.company} - {job.location}
+                <div className="mt-2">
+                  <p>
+                    {job.accessibilityServices}
+                  </p>
+                </div>
+              </p>
+            </div>
+>>>>>>> d35961344be1f67f6f979e3e6a8fca5c168c608c
 
       <div className="px-8 py-6 mt-16">
         <h1 className="text-3xl font-semibold text-blue-800 mb-6">
