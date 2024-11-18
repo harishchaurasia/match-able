@@ -4,9 +4,10 @@ from dotenv import load_dotenv
 import os
 import json
 
-load_dotenv()  # Load variables from .env
+load_dotenv("Users/chiragseth/Desktop/HackPrinceton/match-able/src/backend/.env")  # Load variables from .env
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
+print(f"API Key: {os.getenv('OPENAI_API_KEY')}")
 client = OpenAI()
 
 def resumeSimilarity(resume, jobDesc):

@@ -1,487 +1,70 @@
-// // const express = require('express');
-// // const app = express();
-// // const bcrypt = require('bcrypt');
-// // const collection = require('./config'); // Import collection from config.js
-// // require('dotenv').config();
-// // const jwt = require('jsonwebtoken');
-
-// // const aws = require('aws-sdk');
-// // const s3 = new aws.S3({
-// //     accessKeyId: 'AKIAT4GVRLAMNU5UAFUZ',       // Replace with your actual access key
-// //     secretAccessKey: 'ajjaPvN2FXfZWmf2VgFwdb8rTnfNJrm8s4hg+D17',   // Replace with your actual secret key
-// //     region: 'us-east-2'                 // Replace with your actual AWS region
-// // });
-// // //const s3 = new aws.S3();
-
-// // const fs = require('fs');
-// // const multer = require('multer');
-
-// // // Middleware to parse JSON and URL-encoded data
-// // app.use(express.json());
-// // app.use(express.urlencoded({ extended: false }));
-
-// // const upload = multer({ dest: 'uploads/' }); // Temporary folder to store uploaded files
-
-// // // Route for signup
-// // app.post("/signup", async (req, res) => {
-// //     try {
-// //         const data = {
-// //             email: req.body.email,
-// //             password: req.body.password,
-// //             role: req.body.role
-// //         };
-
-// //         const existingUser = await collection.findOne({ email: data.email });
-
-// //         if (existingUser) {
-// //             return res.status(400).send("User already exists. Please choose a different email.");
-// //         }
-
-// //         const saltRounds = 10;
-// //         const hashedPassword = await bcrypt.hash(data.password, saltRounds);
-// //         data.password = hashedPassword;
-
-// //         const userdata = await collection.create(data);
-
-// //         console.log("User data saved:", userdata);
-
-// //         return res.status(201).send("Signup Successful");
-// //     } catch (error) {
-// //         console.error("Signup error:", error);
-// //         res.status(500).send("Internal Server Error");
-// //     }
-// // });
-
-// // // app.post("/login", async (req, res) => {
-// // //     try{
-// // //         const check = await collection.findOne({email: req.body.email});
-// // //         if (!check) {
-// // //             return res.send("email not found");
-// // //         }
- 
-// // //         const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-// // //         if (isPasswordMatch) {
-// // //             if (check.role === 'job seeker') {
-// // //                 res.send("job seeker successfully logged in");
-// // //             }
-// // //             else if (check.role === 'employer') {
-// // //                 res.send("employer successfully logged in");
-// // //             }
-// // //         }else{
-// // //             req.send("wrong password");
-// // //         }
-// // //     }catch {
-// // //         res.send("wrong details");
-// // //     }
-// // //  });
-
-// // app.post("/login", async (req, res) => {
-// //     try {
-// //         const check = await collection.findOne({ email: req.body.email });
-// //         if (!check) {
-// //             return res.send("Email not found");
-// //         }
-
-// //         const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-// //         if (isPasswordMatch) {
-// //             const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-// //             const roleMessage = check.role === 'job seeker' ? "Job seeker successfully logged in" : "Employer successfully logged in";
-
-// //             return res.status(200).json({ message: roleMessage, token });
-// //         } else {
-// //             return res.status(400).send("Wrong password");
-// //         }
-// //     } catch (error) {
-// //         console.error("Login error:", error);
-// //         res.status(500).send("Internal Server Error");
-// //     }
-// // });
-
-// // // Route for uploading resume
-// // /*app.post("/upload-resume", upload.single('resume'), async (req, res) => {
-// //     try {
-// //         const fileStream = fs.createReadStream(req.file.path); // Read the uploaded file
-
-// //         // Upload the file to the S3 bucket
-// //         const result = await s3.upload({
-// //             Bucket: "match-able-resumes",
-// //             Key: `resumes/${req.file.originalname}`, // Use the uploaded file's original name
-// //             Body: fileStream,
-// //             ContentType: "application/pdf"
-// //         }).promise();
-
-// //         console.log("File uploaded successfully:", result);
-// //         res.status(200).send("Resume uploaded successfully");
-
-// //         // Remove the file from the local `uploads` folder after uploading
-// //         fs.unlink(req.file.path, (err) => {
-// //             if (err) console.error("Error deleting temp file:", err);
-// //         });
-// //     } catch (error) {
-// //         console.error("Error uploading file:", error);
-// //         res.status(500).send("Error uploading resume");
-// //     }
-// // });*/
-
-// // app.post("/upload-resume", upload.single('resume'), async (req, res) => {
-// //     try {
-// //         // Ensure the request includes an email or ID to identify the user
-// //         const { email } = req.body;
-// //         const user = await collection.findOne({ email });
-        
-// //         if (!user) {
-// //             return res.status(404).send("User not found");
-// //         }
-
-// //         const fileStream = fs.createReadStream(req.file.path); // Read the uploaded file
-
-// //         // Upload the file to the S3 bucket
-// //         const result = await s3.upload({
-// //             Bucket: "match-able-resumes",
-// //             Key: `resumes/${req.file.originalname}`, // Use the uploaded file's original name
-// //             Body: fileStream,
-// //             ContentType: "application/pdf"
-// //         }).promise();
-
-// //         // Update the user's document in the database with the S3 file key
-// //         await collection.updateOne(
-// //             { email },
-// //             { $set: { resume_key: result.Key } }
-// //         );
-
-// //         console.log("File uploaded and database updated successfully:", result);
-// //         res.status(200).send("Resume uploaded and saved successfully");
-
-// //         // Remove the file from the local `uploads` folder after uploading
-// //         fs.unlink(req.file.path, (err) => {
-// //             if (err) console.error("Error deleting temp file:", err);
-// //         });
-// //     } catch (error) {
-// //         console.error("Error uploading file:", error);
-// //         res.status(500).send("Error uploading resume");
-// //     }
-// // });
-
-// // // Start the server
-// // const PORT = process.env.PORT || 3000;
-// // app.listen(PORT, () => {
-// //     console.log(`Server is running on port ${PORT}`);
-// // });
-
-// // require('dotenv').config();
-// // const express = require('express');
-// // const app = express();
-// // const bcrypt = require('bcrypt');
-// // const collection = require('./config'); // Import collection from config.js
-// // const aws = require('aws-sdk');
-// // const fs = require('fs');
-// // const multer = require('multer');
-// // const jwt = require('jsonwebtoken');
-
-// // // Configure AWS S3
-// // const s3 = new aws.S3({
-// //     accessKeyId: 'AKIAT4GVRLAMNU5UAFUZ',       // Replace with your actual access key in .env
-// //     secretAccessKey: 'ajjaPvN2FXfZWmf2VgFwdb8rTnfNJrm8s4hg+D17',   // Replace with your actual secret key in .env
-// //     region: 'us-east-2'                 // Replace with your actual AWS region
-// // });
-
-// // // Configure multer for file uploads
-// // const upload = multer({ dest: 'uploads/' }); // Temporary folder to store uploaded files
-
-// // // Middleware to parse JSON and URL-encoded data
-// // app.use(express.json());
-// // app.use(express.urlencoded({ extended: false }));
-
-// // // Middleware for JWT authentication
-// // function authenticateToken(req, res, next) {
-// //     const authHeader = req.headers['authorization'];
-// //     const token = authHeader && authHeader.split(' ')[1];
-// //     if (!token) return res.sendStatus(401); // Unauthorized if no token is present
-
-// //     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-// //         if (err) return res.sendStatus(403); // Forbidden if token is invalid
-// //         req.user = user; // Attach user info (email) to request
-// //         next();
-// //     });
-// // }
-
-// // // Route for signup
-// // app.post("/signup", async (req, res) => {
-// //     try {
-// //         const data = {
-// //             email: req.body.email,
-// //             password: req.body.password,
-// //             role: req.body.role
-// //         };
-
-// //         const existingUser = await collection.findOne({ email: data.email });
-// //         if (existingUser) {
-// //             return res.status(400).send("User already exists. Please choose a different email.");
-// //         }
-
-// //         const saltRounds = 10;
-// //         const hashedPassword = await bcrypt.hash(data.password, saltRounds);
-// //         data.password = hashedPassword;
-
-// //         const userdata = await collection.create(data);
-// //         console.log("User data saved:", userdata);
-
-// //         return res.status(201).send("Signup Successful");
-// //     } catch (error) {
-// //         console.error("Signup error:", error);
-// //         res.status(500).send("Internal Server Error");
-// //     }
-// // });
-
-// // // Route for login
-// // app.post("/login", async (req, res) => {
-// //     try {
-// //         const check = await collection.findOne({ email: req.body.email });
-// //         if (!check) {
-// //             return res.status(404).send("Email not found");
-// //         }
-
-// //         const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-// //         if (isPasswordMatch) {
-// //             const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-// //             const roleMessage = check.role === 'job seeker' ? "Job seeker successfully logged in" : "Employer successfully logged in";
-
-// //             return res.status(200).json({ message: roleMessage, token });
-// //         } else {
-// //             return res.status(400).send("Wrong password");
-// //         }
-// //     } catch (error) {
-// //         console.error("Login error:", error);
-// //         res.status(500).send("Internal Server Error");
-// //     }
-// // });
-
-// // // Route for uploading resume
-// // app.post("/upload-resume", authenticateToken, upload.single('resume'), async (req, res) => {
-// //     try {
-// //         const email = req.user.email; // Retrieved from JWT payload
-
-// //         const user = await collection.findOne({ email });
-// //         if (!user) {
-// //             return res.status(404).send("User not found");
-// //         }
-
-// //         const fileStream = fs.createReadStream(req.file.path);
-
-// //         // Upload the file to the S3 bucket
-// //         const result = await s3.upload({
-// //             Bucket: "match-able-resumes",
-// //             Key: `resumes/${req.file.originalname}`, // Use the uploaded file's original name
-// //             Body: fileStream,
-// //             ContentType: "application/pdf"
-// //         }).promise();
-
-// //         // Update the user's document in the database with the S3 file key
-// //         await collection.updateOne(
-// //             { email },
-// //             { $set: { resume_key: result.Key } }
-// //         );
-
-// //         console.log("File uploaded and database updated successfully:", result);
-// //         res.status(200).send("Resume uploaded and saved successfully");
-
-// //         // Remove the file from the local `uploads` folder after uploading
-// //         fs.unlink(req.file.path, (err) => {
-// //             if (err) console.error("Error deleting temp file:", err);
-// //         });
-// //     } catch (error) {
-// //         console.error("Error uploading file:", error);
-// //         res.status(500).send("Error uploading resume");
-// //     }
-// // });
-
-// // // Start the server
-// // const PORT = process.env.PORT || 3000;
-// // app.listen(PORT, () => {
-// //     console.log(`Server is running on port ${PORT}`);
-// // });
-
-// require('dotenv').config();
-// const express = require('express');
-// const app = express();
-// const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
-// const collection = require('./config'); // Import collection from config.js
-// const aws = require('aws-sdk');
-// const fs = require('fs');
-// const multer = require('multer');
-// const cors = require('cors');
-
-// // Log JWT_SECRET to confirm it's being loaded correctly
-// console.log("JWT_SECRET:", process.env.JWT_SECRET);
-
-// // Configure AWS S3
-// const s3 = new aws.S3({
-//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//     region: process.env.AWS_REGION
-// });
-
-// // Configure multer for file uploads
-// const upload = multer({ dest: 'uploads/' }); // Temporary folder to store uploaded files
-
-// // Middleware to parse JSON and URL-encoded data
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cors());
-
-// // Middleware for JWT authentication
-// function authenticateToken(req, res, next) {
-//     const authHeader = req.headers['authorization'];
-//     const token = authHeader && authHeader.split(' ')[1];
-//     if (!token) return res.sendStatus(401); // Unauthorized if no token is present
-
-//     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-//         if (err) return res.sendStatus(403); // Forbidden if token is invalid
-//         req.user = user; // Attach user info (email) to request
-//         next();
-//     });
-// }
-
-// // Route for signup
-// app.post("/signup", async (req, res) => {
-//     try {
-//         const data = {
-//             email: req.body.email,
-//             password: req.body.password,
-//             role: req.body.role
-//         };
-
-//         const existingUser = await collection.findOne({ email: data.email });
-//         if (existingUser) {
-//             return res.status(400).send("User already exists. Please choose a different email.");
-//         }
-
-//         const saltRounds = 10;
-//         const hashedPassword = await bcrypt.hash(data.password, saltRounds);
-//         data.password = hashedPassword;
-
-//         const userdata = await collection.create(data);
-//         console.log("User data saved:", userdata);
-
-//         return res.status(201).send("Signup Successful");
-//     } catch (error) {
-//         console.error("Signup error:", error);
-//         res.status(500).send("Internal Server Error");
-//     }
-// });
-
-// // Route for login
-// app.post("/login", async (req, res) => {
-//     try {
-//         const check = await collection.findOne({ email: req.body.email });
-//         if (!check) {
-//             return res.status(404).send("Email not found");
-//         }
-
-//         const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-//         if (isPasswordMatch) {
-//             const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-//             const roleMessage = check.role === 'job seeker' ? "Job seeker successfully logged in" : "Employer successfully logged in";
-
-//             return res.status(200).json({ message: roleMessage, token });
-//         } else {
-//             return res.status(400).send("Wrong password");
-//         }
-//     } catch (error) {
-//         console.error("Login error:", error); // Log error details
-//         res.status(500).send("Internal Server Error");
-//     }
-// });
-
-// // Route for uploading resume
-// app.post("/upload-resume", authenticateToken, upload.single('resume'), async (req, res) => {
-//     try {
-//         const email = req.user.email; // Retrieved from JWT payload
-
-//         const user = await collection.findOne({ email });
-//         if (!user) {
-//             return res.status(404).send("User not found");
-//         }
-
-//         const fileStream = fs.createReadStream(req.file.path);
-
-//         // Upload the file to the S3 bucket
-//         const result = await s3.upload({
-//             Bucket: "match-able-resumes",
-//             Key: `resumes/${req.file.originalname}`, // Use the uploaded file's original name
-//             Body: fileStream,
-//             ContentType: "application/pdf"
-//         }).promise();
-
-//         // Update the user's document in the database with the S3 file key
-//         await collection.updateOne(
-//             { email },
-//             { $set: { resume_key: result.Key } }
-//         );
-
-//         console.log("File uploaded and database updated successfully:", result);
-//         res.status(200).send("Resume uploaded and saved successfully");
-
-//         // Remove the file from the local `uploads` folder after uploading
-//         fs.unlink(req.file.path, (err) => {
-//             if (err) console.error("Error deleting temp file:", err);
-//         });
-//     } catch (error) {
-//         console.error("Error uploading file:", error);
-//         res.status(500).send("Error uploading resume");
-//     }
-// });
-
-// // Start the server
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`);
-// });
-
 require('dotenv').config();
 const express = require('express');
 const app = express();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const collection = require('./config'); // Import collection from config.js
+const collection = require('./config');
 const aws = require('aws-sdk');
 const fs = require('fs');
 const multer = require('multer');
 const cors = require('cors');
+const { spawn } = require("child_process");
+const path = require('path');
 
-// Log JWT_SECRET to confirm it's being loaded correctly
-console.log("JWT_SECRET:", process.env.JWT_SECRET);
-
-// Configure AWS S3
 const s3 = new aws.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: process.env.AWS_REGION
 });
 
-// Configure multer for file uploads
-const upload = multer({ dest: 'uploads/' }); // Temporary folder to store uploaded files
+const upload = multer({ dest: 'uploads/' });
 
-// Middleware to parse JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-// Middleware for JWT authentication
+// Authentication middleware (kept for other endpoints that might need it)
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (!token) return res.sendStatus(401); // Unauthorized if no token is present
+    console.log("Auth header:", authHeader);
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403); // Forbidden if token is invalid
-        req.user = user; // Attach user info (email) to request
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        console.log("Invalid auth header format");
+        return res.status(401).json({ message: "Invalid authentication header" });
+    }
+
+    const token = authHeader.split(' ')[1];
+    console.log("Extracted token:", token);
+
+    if (!token) {
+        console.log("No token provided");
+        return res.status(401).json({ message: "No token provided" });
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log("Decoded token:", decoded);
+        req.user = decoded;
         next();
-    });
+    } catch (error) {
+        console.error("Token verification failed:", error);
+        return res.status(403).json({ message: "Invalid token" });
+    }
 }
 
-// Route for signup
+app.get("/api/companies", async (req, res) => {
+    try {
+        console.log("Fetching companies...");
+        const companies = await collection.Company.find({});
+        console.log("Companies found:", companies);
+        res.json(companies);
+    } catch (error) {
+        console.error("Error fetching companies:", error);
+        res.status(500).json({ message: "Error retrieving company data" });
+    }
+});
+
+
 app.post("/signup", async (req, res) => {
     try {
         const data = {
@@ -492,7 +75,7 @@ app.post("/signup", async (req, res) => {
 
         const existingUser = await collection.findOne({ email: data.email });
         if (existingUser) {
-            return res.status(400).send("User already exists. Please choose a different email.");
+            return res.status(400).json({ message: "User already exists" });
         }
 
         const saltRounds = 10;
@@ -500,90 +83,229 @@ app.post("/signup", async (req, res) => {
         data.password = hashedPassword;
 
         const userdata = await collection.create(data);
-        console.log("User data saved:", userdata);
+        console.log("User created:", userdata);
 
-        return res.status(201).send("Signup Successful");
+        const token = jwt.sign({ email: data.email }, process.env.JWT_SECRET, { expiresIn: '24h' });
+        res.status(201).json({ message: "Signup Successful", token });
     } catch (error) {
         console.error("Signup error:", error);
-        res.status(500).send("Internal Server Error");
+        res.status(500).json({ message: "Internal Server Error" });
     }
 });
 
-// Route for login
 app.post("/login", async (req, res) => {
     try {
-        const check = await collection.findOne({ email: req.body.email });
-        if (!check) {
-            return res.status(404).send("Email not found");
+        const user = await collection.findOne({ email: req.body.email });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
         }
 
-        const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
-        if (isPasswordMatch) {
-            const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-            const roleMessage = check.role === 'job seeker' ? "Job seeker successfully logged in" : "Employer successfully logged in";
-
-            return res.status(200).json({ message: roleMessage, token });
-        } else {
-            return res.status(400).send("Wrong password");
+        const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
+        if (!isPasswordMatch) {
+            return res.status(401).json({ message: "Invalid password" });
         }
+
+        const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '24h' });
+        console.log("Login successful, token generated:", token);
+
+        res.status(200).json({
+            message: "Login successful",
+            token,
+            role: user.role
+        });
     } catch (error) {
-        console.error("Login error:", error); // Log error details
-        res.status(500).send("Internal Server Error");
+        console.error("Login error:", error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 });
 
-// Route for uploading resume
-app.post("/upload-resume", authenticateToken, upload.single('resume'), async (req, res) => {
+app.post("/update-profile", authenticateToken, async (req, res) => {
     try {
-        const email = req.user.email; // Retrieved from JWT payload
+        const { name, accessibility_needs } = req.body;
+        const email = req.user.email;
+        console.log("Updating profile for user:", email);
 
         const user = await collection.findOne({ email });
         if (!user) {
-            return res.status(404).send("User not found");
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        await collection.updateOne(
+            { email },
+            { $set: { name, accessibility_needs } }
+        );
+
+        console.log("Profile updated successfully");
+        res.status(200).json({ message: "Profile updated successfully" });
+    } catch (error) {
+        console.error("Error updating profile:", error);
+        res.status(500).json({ message: "Error updating profile" });
+    }
+});
+
+app.get("/calculate-similarity", authenticateToken, async (req, res) => {
+    try {
+        const email = req.user.email; // Email of the authenticated user
+        console.log("Calculating similarity for user:", email);
+        
+        const user = await collection.findOne({ email });
+        if (!user) {
+            console.log("User not found:", email);
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        const accessibilityNeeds = user.accessibility_needs;
+        const companies = await collection.Company.find({}, 'accessibilityServices');
+
+        console.log("User needs:", accessibilityNeeds);
+        console.log("Companies found:", companies);
+
+        const pythonPath = 'C:\\Users\\haris\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe';
+        const pythonScriptPath = 'C:\\Users\\haris\\Desktop\\match-able\\src\\ai-ml\\accessibilitySimilarity.py';
+        
+        const python = spawn(pythonPath, [
+            pythonScriptPath,
+            JSON.stringify({ accessibilityNeeds, companies })
+        ]);
+
+        let pythonData = '';
+        let pythonError = '';
+
+        python.stdout.on('data', (data) => {
+            pythonData += data.toString();
+            console.log("Python output:", data.toString());
+        });
+
+        python.stderr.on('data', (data) => {
+            pythonError += data.toString();
+            console.error("Python error:", data.toString());
+        });
+
+        python.on('close', (code) => {
+            if (code !== 0) {
+                console.error("Python process exited with code:", code);
+                return res.status(500).json({ 
+                    message: "Error calculating similarity",
+                    error: pythonError,
+                    code: code
+                });
+            }
+            try {
+                const scores = JSON.parse(pythonData);
+                console.log("Calculated scores:", scores);
+                res.json(scores);
+            } catch (error) {
+                console.error("Error parsing Python output:", error);
+                res.status(500).json({ 
+                    message: "Error parsing similarity scores",
+                    error: error.message,
+                    pythonOutput: pythonData
+                });
+            }
+        });
+
+    } catch (error) {
+        console.error("Error in similarity calculation:", error);
+        res.status(500).json({ 
+            message: "Error in similarity calculation",
+            error: error.message 
+        });
+    }
+});
+
+
+app.post("/upload-resume", authenticateToken, upload.single('resume'), async (req, res) => {
+    try {
+        const email = req.user.email;
+        console.log("Uploading resume for user:", email);
+
+        const user = await collection.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
         }
 
         const fileStream = fs.createReadStream(req.file.path);
 
-        // Upload the file to the S3 bucket
         const result = await s3.upload({
             Bucket: "match-able-resumes",
-            Key: `resumes/${req.file.originalname}`, // Use the uploaded file's original name
+            Key: `resumes/${req.file.originalname}`,
             Body: fileStream,
             ContentType: "application/pdf"
         }).promise();
 
-        // Update the user's document in the database with the S3 file key
+        const resumeKey = result.Key;
+
         await collection.updateOne(
             { email },
-            { $set: { resume_key: result.Key } }
+            { $set: { resume_key: resumeKey } }
         );
 
-        console.log("File uploaded and database updated successfully:", result);
-        res.status(200).send("Resume uploaded and saved successfully");
+        console.log("Resume uploaded successfully:", result);
 
-        // Remove the file from the local `uploads` folder after uploading
+        const downloadParams = {
+            Bucket: "match-able-resumes",
+            Key: resumeKey
+        };
+        const downloadStream = s3.getObject(downloadParams).createReadStream();
+
+        const localFilePath = path.join(__dirname, 'temp_resume.pdf');
+        const writeStream = fs.createWriteStream(localFilePath);
+        downloadStream.pipe(writeStream);
+
+        writeStream.on('error', (err) => {
+            console.error("Error writing file locally:", err);
+            res.status(500).json({ message: "Error writing temp file" });
+        });
+
+        writeStream.on('finish', async () => {
+            console.log("Temp file saved successfully. Running pdfScrape.py...");
+            const python = spawn("python3", ["C:\\Users\\haris\\Desktop\\match-able\\src\\ai-ml\\pdfScrape.py", localFilePath]);
+
+            let extractedText = '';
+            python.stdout.on("data", (data) => {
+                extractedText += data.toString();
+            });
+
+            python.stderr.on("data", (data) => {
+                console.error("Python error:", data.toString());
+            });
+
+            python.on("close", async (code) => {
+                if (code !== 0) {
+                    console.error("Error: pdfScrape.py exited with code", code);
+                    return res.status(500).json({ message: "Error processing PDF" });
+                }
+
+                if (!extractedText) {
+                    console.error("Error: No text extracted from PDF");
+                    return res.status(500).json({ message: "No text extracted from PDF" });
+                }
+
+                await collection.updateOne(
+                    { email },
+                    { $set: { resume_text: extractedText } }
+                );
+
+                fs.unlink(localFilePath, (err) => {
+                    if (err) console.error("Error deleting temp file:", err);
+                });
+
+                res.status(200).json({ message: "Resume processed and text saved" });
+            });
+        });
+
         fs.unlink(req.file.path, (err) => {
-            if (err) console.error("Error deleting temp file:", err);
+            if (err) console.error("Error deleting uploaded temp file:", err);
         });
     } catch (error) {
-        console.error("Error uploading file:", error);
-        res.status(500).send("Error uploading resume");
+        console.error("Error uploading resume:", error);
+        res.status(500).json({ message: "Error uploading resume" });
     }
 });
 
-// Route to retrieve all companies
-app.get("/api/companies", async (req, res) => {
-    try {
-        const companies = await collection.Company.find({});
-        res.json(companies);
-    } catch (error) {
-        console.error("Error retrieving company data:", error);
-        res.status(500).json({ message: "Error retrieving company data" });
-    }
-});
-
-// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = app;
