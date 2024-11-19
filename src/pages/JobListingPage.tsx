@@ -89,7 +89,7 @@ const JobListingPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 px-12 py-6">
+    <div className="min-h-screen bg-gray-100 px-16 py-6">
       <Navbar />
 
       <div className="px-12 mt-16">
