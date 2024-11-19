@@ -160,8 +160,8 @@ app.get("/calculate-similarity", authenticateToken, async (req, res) => {
         console.log("User needs:", accessibilityNeeds);
         console.log("Companies found:", companies);
 
-        const pythonPath = 'C:\\Users\\haris\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe';
-        const pythonScriptPath = 'C:\\Users\\haris\\Desktop\\match-able\\src\\ai-ml\\accessibilitySimilarity.py';
+        const pythonPath = '/Users/chiragseth/Desktop/HackPrinceton/match-able/src/ai-ml/venv/bin/python3';
+        const pythonScriptPath = '/Users/chiragseth/Desktop/HackPrinceton/match-able/src/ai-ml/accessibilitySimilarity.py';
         
         const python = spawn(pythonPath, [
             pythonScriptPath,
@@ -259,7 +259,7 @@ app.post("/upload-resume", authenticateToken, upload.single('resume'), async (re
 
         writeStream.on('finish', async () => {
             console.log("Temp file saved successfully. Running pdfScrape.py...");
-            const python = spawn("python3", ["C:\\Users\\haris\\Desktop\\match-able\\src\\ai-ml\\pdfScrape.py", localFilePath]);
+            const python = spawn("python3", ["/Users/chiragseth/Desktop/HackPrinceton/match-able/src/ai-ml/pdfScrape.py", localFilePath]);
 
             let extractedText = '';
             python.stdout.on("data", (data) => {

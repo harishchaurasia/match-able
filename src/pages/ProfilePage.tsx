@@ -147,7 +147,7 @@ const ProfilePage: React.FC = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-lg font-medium text-gray-700">
               Gender
             </label>
@@ -159,7 +159,7 @@ const ProfilePage: React.FC = () => {
               }
               className="w-full p-2 border border-gray-300 rounded-lg"
             />
-          </div>
+          </div> */}
 
           {/* DEI Needs Checkboxes */}
           <div>

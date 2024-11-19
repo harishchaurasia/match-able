@@ -23,7 +23,7 @@ const LoginSchema = new mongoose.Schema({
     role: {
         type: String,
         required: true,
-        enum: ["job seeker", "employer"]
+        enum: ["Job Seeker", "Employer"]
     },
     name: {
         type: String,
